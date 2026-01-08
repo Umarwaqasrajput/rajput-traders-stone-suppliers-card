@@ -2,11 +2,131 @@
 @tailwind components;
 @tailwind utilities;
 
-.business-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 2px solid #e2e8f0;
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    overflow-x: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
 }
 
-.business-card:hover {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+@layer utilities {
+  .animate-pulse {
+    animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-bounce {
+    animation: bounce 2.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+      transform: translate3d(0, -10px, 0);
+    }
+    70% {
+      transform: translate3d(0, -5px, 0);
+    }
+    90% {
+      transform: translate3d(0, -2px, 0);
+    }
+  }
+  
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+  }
+  
+  .hover\:scale-110:hover {
+    transform: scale(1.1);
+  }
+  
+  .transition-all {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .backdrop-blur-sm {
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* Industrial Fire Glow */
+@keyframes fireGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(251, 146, 60, 0.4), 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.6), 0 0 40px rgba(239, 68, 68, 0.5), 0 0 60px rgba(245, 158, 11, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(251, 146, 60, 0.4), 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+}
+
+.fire-glow {
+  animation: fireGlow 3s ease-in-out infinite;
+}
+
+/* Industrial Text Glow */
+.text-glow {
+  text-shadow: 0 0 10px rgba(251, 146, 60, 0.5), 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .text-3xl {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+  
+  .text-xl {
+    font-size: 1.2rem;
+  }
+  
+  .text-lg {
+    font-size: 1.1rem;
+  }
+  
+  .p-6 {
+    padding: 1.3rem;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .w-32 {
+    width: 7rem;
+  }
+  
+  .h-32 {
+    height: 7rem;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #f97316, #dc2626);
+  border-radius: 3px;
 }
